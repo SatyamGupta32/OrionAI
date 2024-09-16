@@ -9,12 +9,12 @@ const layout = ({
 }>) => {
     return (
         <div className="relative">
-                <SideNav />
+            <SideNav />
 
-            {/* <Header/> */}
-            
-                {children}
-        
+            <Header />
+
+            {children}
+
         </div>
     );
 };

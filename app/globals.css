@@ -72,7 +72,18 @@ body{
   font-style: normal;
 }
 
+body::-webkit-scrollbar{
+  display: none;
+}
+
 .logo {
-  width: 70px;
-  height: 60px; 
+  width: 50px;
+  height: 50px; 
+}
+
+@media screen and (min-width:1024px){
+  .logo {
+    width: 70px;
+    height: 60px; 
+  }
 }
