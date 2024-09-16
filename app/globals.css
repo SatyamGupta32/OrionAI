@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -63,4 +65,14 @@
   body {
     @apply bg-background text-foreground;
   }
+}
+
+body{
+  font-family: "Jost", sans-serif;
+  font-style: normal;
+}
+
+.logo {
+  width: 70px;
+  height: 60px; 
 }
