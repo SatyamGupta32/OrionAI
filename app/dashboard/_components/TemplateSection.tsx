@@ -1,6 +1,6 @@
 import Template from '@/app/(data)/Template'
 import { useEffect, useState } from 'react'
-import TemplateCard from './TemplateCard'
+import TemplateCard from '../content/TemplateCard'
 
 export interface TEMPLATE {
     name: string,

@@ -4,7 +4,6 @@ import Image from 'next/image';
 import { FileClock, Home, Settings2 , WalletCards } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-import { log } from 'console';
 
 const SideNav = () => {
 
