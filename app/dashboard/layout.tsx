@@ -8,7 +8,7 @@ const layout = ({
     children: React.ReactNode;
 }>) => {
     return (
-        <div className="relative">
+        <div className="relative bg-purple-50 h-screen">
             <SideNav />
 
             <Header />

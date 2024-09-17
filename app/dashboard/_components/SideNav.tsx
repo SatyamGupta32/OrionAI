@@ -10,7 +10,6 @@ const SideNav = () => {
     const path = usePathname();
     useEffect(()=>{
         console.log(path);
-        
     },[])
 
     const menuList = [
@@ -37,7 +36,7 @@ const SideNav = () => {
     ]
 
     return (
-        <div className="md:w-48 lg:w-64 md:block hidden fixed shadow-sm border-r-2 h-screen ">
+        <div className="md:w-48 lg:w-64 md:block hidden fixed shadow-sm border-r-2 h-screen bg-white">
             <div className="flex items-center mt-3 justify-center py-4 cursor-pointer">
                 <div className="relative">
                     <Image

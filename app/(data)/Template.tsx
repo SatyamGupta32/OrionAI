@@ -126,7 +126,7 @@ export default [
         ]
     },
     {
-        name: 'Product Description Generator',
+        name: 'Product Desc. Generator',
         desc: 'AI that generates product descriptions based on your product information.',
         icon: '/product-description.png',
         category: 'ecommerce',
@@ -168,7 +168,7 @@ export default [
         ]
     },
     {
-        name: 'Social Media Caption Generator',
+        name: 'Social Media Caption',
         desc: 'AI that generates captions for social media posts based on your input.',
         icon: '/social-media-caption.png',
         category: 'post',
