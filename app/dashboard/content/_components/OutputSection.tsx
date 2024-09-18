@@ -10,10 +10,12 @@ interface PROPS {
 
 function OutputSection({ aiOutput }: PROPS) {
   const editorRef: any = useRef(null);
+
   useEffect(() => {
     const editorInstance = editorRef.current.getInstance();
-    editorInstance.setMarkdown(aiOutput)
-  }, [aiOutput])
+    editorInstance.setMarkdown(aiOutput);
+  }, [aiOutput]);
+
   return (
     <div className='w-full p-5 shadow-lg border rounded-sm bg-white'>
       <div className='flex items-center justify-between py-4'>
@@ -23,14 +25,13 @@ function OutputSection({ aiOutput }: PROPS) {
 
       <Editor
         ref={editorRef}
-        initialValue="Your result show here !"
+        initialValue="Your result show here!"
         height='600px'
         initialEditType="wysiwyg"
         useCommandShortcut={true}
-        onChange={() => console.log(editorRef.current.getInstance().getMarkdown())}
       />
     </div>
-  )
+  );
 }
 
-export default OutputSection
+export default OutputSection;

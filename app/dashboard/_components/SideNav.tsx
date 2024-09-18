@@ -1,37 +1,37 @@
 'use client';
 
 import Image from 'next/image';
-import { FileClock, Home, Settings2 , WalletCards } from 'lucide-react';
+import { FileClock, Home, Settings2, WalletCards } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 
 const SideNav = () => {
 
     const path = usePathname();
-    useEffect(()=>{
+    useEffect(() => {
         console.log(path);
-    },[])
+    }, [])
 
     const menuList = [
         {
             name: 'Home',
             icon: Home,
-            path:'/dashboard'
+            path: '/dashboard'
         },
         {
             name: 'History',
             icon: FileClock,
-            path:'/dashboard/history'
+            path: '/dashboard/history'
         },
         {
             name: 'Billing',
             icon: WalletCards,
-            path:'/dashboard/billing'
+            path: '/dashboard/billing'
         },
         {
             name: 'Setting',
             icon: Settings2,
-            path:'/dashboard/setting'
+            path: '/dashboard/setting'
         },
     ]
 
@@ -41,7 +41,7 @@ const SideNav = () => {
                 <div className="relative">
                     <Image
                         className="logo"
-                        src="/logo.png"
+                        src="/favicon180.webp"
                         alt="Logo"
                         width={60}
                         height={60}
@@ -49,7 +49,7 @@ const SideNav = () => {
                     />
                 </div>
                 <span className="ml-2 md:text-lg lg:text-2xl font-semibold text-black">
-                    WordFlow AI
+                    OrionAI
                 </span>
             </div>
 
@@ -59,12 +59,12 @@ const SideNav = () => {
             {/* Animated sidebar with content */}
             <div className="pl-3 mt-2 pr-1 animate-fadeIn">
                 <ul className="space-y-4">
-                    {menuList.map((menu, index) =>(
-                    <li key={index} className={`hover:bg-[#E5E5E5] flex items-center gap-3 p-2 rounded transition-all duration-500 cursor-pointer hover:ml-3 text-lg font-light hover:font-normal hover:text-gray-400 ${path == menu.path && 'bg-[#E5E5E5] ml-3 font-normal text-gray-400'}`}>
-                       <span><menu.icon size={18}/></span>
-                       <span>{menu.name}</span>
-                    </li>
-                    ))} 
+                    {menuList.map((menu, index) => (
+                        <li key={index} className={`hover:bg-[#E5E5E5] flex items-center gap-3 p-2 rounded transition-all duration-500 cursor-pointer hover:ml-3 text-lg font-light hover:font-normal hover:text-gray-400 ${path == menu.path && 'bg-[#E5E5E5] ml-3 font-normal text-gray-400'}`}>
+                            <span><menu.icon size={18} /></span>
+                            <span>{menu.name}</span>
+                        </li>
+                    ))}
                 </ul>
             </div>
         </div>

@@ -54,7 +54,7 @@ function FormSection({ selectedTemplate, userFormInput, loading }: PROPS) {
           </div>
         ))}
         <Button type='submit' className='w-full py-5' disabled={loading}>
-          {loading && <Loader2Icon className='animate-spin' />}
+          {loading && <Loader2Icon className='animate-spin mr-2' />}
           Generate Content
         </Button>
       </form>
