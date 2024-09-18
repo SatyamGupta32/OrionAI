@@ -11,7 +11,8 @@ import { ArrowLeft } from 'lucide-react';
 import { chatSession } from '@/utils/AiModel';
 import { db } from '@/utils/db';
 import { AIOutput } from '@/utils/schema';
-import { useUser } from '@clerk/clerk-react'
+import { useUser } from '@clerk/clerk-react';
+import moment from 'moment';
 
 const OutputSection = dynamic(() => import('../_components/OutputSection'), { ssr: false });
 
@@ -44,9 +45,11 @@ function ContentSection(props: PROPS) {
       templateSlug: slug || '',
       aiResponse: airepo || '',
       created_by: email,
+      created_at: moment().format('DD/MM/YYYY'),
     });
-    console.log(result);
+    console.log(result)
   };
+f
 
   return (
     <div className='ml-0 md:ml-48 lg:ml-64 p-5'>
@@ -71,3 +74,7 @@ function ContentSection(props: PROPS) {
 }
 
 export default ContentSection;
+function moment() {
+  throw new Error('Function not implemented.');
+}
+
