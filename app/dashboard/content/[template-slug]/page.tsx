@@ -49,7 +49,6 @@ function ContentSection(props: PROPS) {
     });
     console.log(result)
   };
-f
 
   return (
     <div className='ml-0 md:ml-48 lg:ml-64 p-5'>
