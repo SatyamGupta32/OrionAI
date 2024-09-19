@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 import FormSection from '../_components/FormSection';
@@ -12,7 +12,8 @@ import { chatSession } from '@/utils/AiModel';
 import { db } from '@/utils/db';
 import { AIOutput } from '@/utils/schema';
 import { useUser } from '@clerk/clerk-react';
-import moment from 'moment';
+import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
+import { useRouter } from 'next/navigation';
 
 const OutputSection = dynamic(() => import('../_components/OutputSection'), { ssr: false });
 
@@ -27,8 +28,15 @@ function ContentSection(props: PROPS) {
   const [loading, setLoading] = useState(false);
   const [aiOutput, setAiOutput] = useState<string>('');
   const { user } = useUser();
+  const router = useRouter();
+  const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
 
   const generateAIcontent = async (formData: any) => {
+    if(totalUsage >= 10000){
+      console.log('please upgrade')
+      router.push('/dashboard/billing')
+      return;
+    }
     setLoading(true);
     const selectedPrompt = selectedTemplate?.aiPrompt;
     const finalAiPrompt = JSON.stringify(formData) + ', ' + selectedPrompt;
@@ -40,12 +48,13 @@ function ContentSection(props: PROPS) {
 
   const SaveInDb = async (formData: any, slug: any, airepo: string) => {
     const email = user?.primaryEmailAddress?.emailAddress ?? 'unknown';
+    const now = new Date();
     const result = await db.insert(AIOutput).values({
       FormData: formData,
       templateSlug: slug || '',
       aiResponse: airepo || '',
       created_by: email,
-      created_at: moment().format('DD/MM/YYYY'),
+      created_at: now,
     });
     console.log(result)
   };
@@ -73,7 +82,5 @@ function ContentSection(props: PROPS) {
 }
 
 export default ContentSection;
-function moment() {
-  throw new Error('Function not implemented.');
-}
+
 
