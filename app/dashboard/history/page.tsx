@@ -33,6 +33,7 @@ const HistoryPage = () => {
     const fetchHistory = async () => {
       try {
         // Correct query using Drizzle ORM to order by ID in descending order
+        // @ts-ignore
         const result = await db
           .select()
           .from(AIOutput)
