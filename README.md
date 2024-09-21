@@ -31,11 +31,37 @@ AI Content Generator is a Next.js application that utilizes cutting-edge technol
 
 ## Getting Started
 
-To run the application locally, clone the repository and install the dependencies:
+Follow these steps to set up the application locally:
+
+### Prerequisites
+
+Make sure you have Node.js and npm or yarn installed.
+
+### Installation
+
+1. Clone the repository:
+
+    ```bash
+    git clone <repository-url>
+    ```
+
+2. Navigate to the project folder:
+
+    ```bash
+    cd ai-content-generator
+    ```
+
+3. Install the dependencies:
+
+    ```bash
+    npm install
+    # or
+    yarn install
+    ```
+
+### Setting up Environment Variables
+
+Create a `.env.local` file in the root directory:
 
 ```bash
-git clone <repository-url>
-cd ai-content-generator
-npm install
-# or
-yarn install
+touch .env.local
