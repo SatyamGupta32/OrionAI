@@ -4,19 +4,22 @@ import React, { useContext } from 'react';
 import { Button } from '@/components/ui/button';
 import { useUser } from '@clerk/nextjs';
 import { db } from '@/utils/db';
-import { AIOutput } from '@/utils/schema';
+import { AIOutput, UserSubscription } from '@/utils/schema';
 import { eq } from 'drizzle-orm';
 import { HistoryItem } from '../history/page';
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
 
 function UsageTrack() {
     const { user } = useUser();
-    const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
+    const { totalUsage, setTotalUsage } = useContext(TotalUsageContext)
+    const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext)
 
     const GetData = async () => {
         if (user?.primaryEmailAddress?.emailAddress) {
             // Ensure the value is defined and cast it to string
             const emailAddress = user.primaryEmailAddress.emailAddress;
+            {/*@ts-ignore*/ }
             const result: HistoryItem[] = await db
                 .select()
                 .from(AIOutput)
@@ -25,8 +28,28 @@ function UsageTrack() {
         }
     };
 
+    const IsUserSubscribe = async () => {
+        if (user?.primaryEmailAddress?.emailAddress) {
+            const emailAddress = user.primaryEmailAddress.emailAddress;
+
+            try {
+                const result = await db
+                    .select()
+                    .from(UserSubscription)
+                    .where(eq(UserSubscription.email, emailAddress));
+
+                if (result) {
+                    setUserSubscription(true);
+                }
+            } catch (error) {
+                console.error('Error checking user subscription:', error);
+            }
+        }
+    }
+
     React.useEffect(() => {
-        GetData();
+        user && GetData();
+        user && IsUserSubscribe();
     }, [user]);
 
     const getTotalUsage = (result: HistoryItem[]) => {
@@ -44,7 +67,7 @@ function UsageTrack() {
                 <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
                     <div
                         className='h-2 transition-width duration-800 bg-white rounded-full'
-                        style={{ width: `${(totalUsage / 10000) * 100}%` }}
+                        style={{ width: `${Math.min((totalUsage / 10000) * 100, 100)}%` }} // Safeguard against overflow
                     ></div>
                 </div>
                 <h2 className='text-xs mt-3'>{totalUsage}/10,000 Credit Used</h2>

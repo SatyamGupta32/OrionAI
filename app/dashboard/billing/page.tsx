@@ -41,20 +41,27 @@ function billing() {
         setLoading(false);
       }
     }
-    // @ts-ignore
+     {/*@ts-ignore*/}
     const rzp = new Razorpay(options);
     rzp.open();
   }
 
   const SaveSubscription = async (paymentId: string) => {
+    console.log(user);
+    const userName = (user?.firstName && user?.lastName)
+      ? `${user.firstName} ${user.lastName}`
+      : user?.primaryEmailAddress?.emailAddress.split('@')[0].replace(/[^a-zA-Z]/g, '');
     const result = await db.insert(UserSubscription).values({
       email: user?.primaryEmailAddress?.emailAddress,
-      userName: user?.fullName,
+      userName: userName,
       active: true,
       paymentId: paymentId,
       joinDate: moment().format('DD/MM/YYYY')
-    })
+    });
     console.log(result);
+    if(result){
+      window.location.reload();
+    }
   }
 
   return (
