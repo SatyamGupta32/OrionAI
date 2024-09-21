@@ -18,7 +18,7 @@ export default function RootLayout({
         <head>
         <link rel="icon" href="/favicon.webp" />
         </head>
-        <body>
+        <body className="bg-[#FAF5FF]">
           {children}
         </body>
       </html>

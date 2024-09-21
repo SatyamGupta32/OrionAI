@@ -7,11 +7,14 @@ import { db } from '@/utils/db';
 import { UserSubscription } from '@/utils/schema';
 import { useUser } from '@clerk/nextjs';
 import moment from 'moment';
+import { useContext } from 'react';
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
 
 function billing() {
 
   const [loading, setLoading] = React.useState(false)
   const { user } = useUser();
+  const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext)
 
   const CreateSubscription = () => {
     setLoading(true);
@@ -104,7 +107,7 @@ function billing() {
             disabled={loading}
             onClick={() => CreateSubscription()} className="relative mt-auto border bg-transparent flex items-center gap-1 border-primary text-primary px-14 py-2 rounded-full hover:bg-primary hover:text-white">
             {loading && <Loader2Icon className='absolute left-7 animate-spin' />}
-            Get Started
+            {userSubscription ? 'Active Plan' : 'Get Started'}
           </button>
         </div>
       </div>

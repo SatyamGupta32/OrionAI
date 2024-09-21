@@ -1,6 +1,8 @@
 'use client';
 
+import { UserButton } from '@clerk/nextjs';
 import { Search } from 'lucide-react';
+import Link from 'next/link';
 import { useState } from 'react';
 
 const Header = () => {
@@ -26,10 +28,13 @@ const Header = () => {
                 />
             </div>
 
-            <div className='bg-primary rounded-sm min-w-80 lg:min-w-64 text-center p-2 text-sm text-[#E5E5E5]'>
+            <div className='bg-primary rounded-sm min-w-80 text-center flex items-center justify-evenly p-2 text-sm text-[#E5E5E5]'>
                 <h2>
-                Join Now for $9.99/Month Membership
+                    <Link href='/dashboard/billing'>
+                        Join Now for $9.99/Month Membership
+                    </Link>
                 </h2>
+                <UserButton />
             </div>
         </div>
     )

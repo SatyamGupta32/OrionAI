@@ -52,7 +52,7 @@ export default [
             {
                 label: 'Enter your video info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -73,7 +73,7 @@ export default [
             {
                 label: 'Enter your post info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -94,7 +94,7 @@ export default [
             {
                 label: 'Enter your post info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -115,7 +115,7 @@ export default [
             {
                 label: 'Enter email content info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -136,7 +136,7 @@ export default [
             {
                 label: 'Enter product details',
                 field: 'input',
-                name: 'details',
+                name: 'niche',
                 required: true,
             },
             {
@@ -157,7 +157,7 @@ export default [
             {
                 label: 'Enter website content info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -178,7 +178,7 @@ export default [
             {
                 label: 'Enter post info',
                 field: 'input',
-                name: 'info',
+                name: 'niche',
                 required: true,
             },
             {
@@ -199,13 +199,35 @@ export default [
             {
                 label: 'Enter event details',
                 field: 'input',
-                name: 'details',
+                name: 'niche',
                 required: true,
             },
             {
                 label: 'Enter invitation outline',
                 field: 'textarea',
                 name: 'outline',
+            }
+        ]
+    },
+    {
+        name: 'Code Generator',
+        desc: 'AI that generates code snippets based on user-defined parameters.',
+        icon: '/coding.png',
+        category: 'development',
+        aiPrompt: 'Generate a code snippet in the specified programming language based on the provided requirements and context. Results should be in a code block format.',
+        slug: 'code-generator',
+        form: [
+            {
+                label: 'Enter programming language',
+                field: 'input',
+                name: 'niche',
+                required: true,
+            },
+            {
+                label: 'Enter code requirements',
+                field: 'textarea',
+                name: 'outline',
+                required: true,
             }
         ]
     }

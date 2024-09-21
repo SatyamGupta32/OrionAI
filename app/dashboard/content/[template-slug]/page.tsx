@@ -13,7 +13,9 @@ import { db } from '@/utils/db';
 import { AIOutput } from '@/utils/schema';
 import { useUser } from '@clerk/clerk-react';
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
 import { useRouter } from 'next/navigation';
+import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext';
 
 const OutputSection = dynamic(() => import('../_components/OutputSection'), { ssr: false });
 
@@ -30,9 +32,11 @@ function ContentSection(props: PROPS) {
   const { user } = useUser();
   const router = useRouter();
   const {totalUsage, setTotalUsage} = useContext(TotalUsageContext)
+  const {userSubscription, setUserSubscription} = useContext(UserSubscriptionContext);
+  const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext);
 
   const generateAIcontent = async (formData: any) => {
-    if(totalUsage >= 10000){
+    if(totalUsage >= 10000 && !userSubscription){
       console.log('please upgrade')
       router.push('/dashboard/billing')
       return;
@@ -44,6 +48,7 @@ function ContentSection(props: PROPS) {
     setAiOutput(result?.response.text());
     await SaveInDb(JSON.stringify(formData), selectedTemplate?.slug, result?.response.text())
     setLoading(false);
+    setUpdateCreditUsage(Date.now())
   };
 
   const SaveInDb = async (formData: any, slug: any, airepo: string) => {

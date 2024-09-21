@@ -12,7 +12,7 @@ const SideNav = () => {
     const path = usePathname();
     useEffect(() => {
         console.log(path);
-    }, [])
+    }, [path])
 
     const menuList = [
         {
@@ -33,7 +33,7 @@ const SideNav = () => {
         {
             name: 'Setting',
             icon: Settings2,
-            path: '/dashboard/setting'
+            path: '/dashboard/settings'
         },
     ]
 
@@ -63,7 +63,7 @@ const SideNav = () => {
                         {menuList.map((menu, index) => (
                             <Link key={index} href={menu.path}>
                                 <li className={`hover:bg-[#E5E5E5] flex items-center gap-3 p-2 rounded transition-all duration-500 cursor-pointer hover:ml-3 text-lg font-light hover:font-normal hover:text-gray-400 ${path == menu.path && 'text-primary font-semilight'}`}>
-                                    <span><menu.icon size={18} /></span>
+                                    <span><menu.icon size={18} /></span> 
                                     <span>{menu.name}</span>
                                 </li>
                             </Link>

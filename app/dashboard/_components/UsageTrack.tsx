@@ -9,11 +9,15 @@ import { eq } from 'drizzle-orm';
 import { HistoryItem } from '../history/page';
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext';
 import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext';
+import { UpdateCreditUsageContext } from '@/app/(context)/UpdateCreditUsageContext';
 
 function UsageTrack() {
     const { user } = useUser();
     const { totalUsage, setTotalUsage } = useContext(TotalUsageContext)
     const { userSubscription, setUserSubscription } = useContext(UserSubscriptionContext)
+    const [maxWords, setMaxWords] = React.useState(10000)
+    const {updateCreditUsage, setUpdateCreditUsage} = useContext(UpdateCreditUsageContext);
+
 
     const GetData = async () => {
         if (user?.primaryEmailAddress?.emailAddress) {
@@ -40,6 +44,7 @@ function UsageTrack() {
 
                 if (result) {
                     setUserSubscription(true);
+                    setMaxWords(100000)
                 }
             } catch (error) {
                 console.error('Error checking user subscription:', error);
@@ -51,6 +56,11 @@ function UsageTrack() {
         user && GetData();
         user && IsUserSubscribe();
     }, [user]);
+
+    React.useEffect(() => {
+        user && GetData();
+    }, [updateCreditUsage,user])
+
 
     const getTotalUsage = (result: HistoryItem[]) => {
         let total = 0;
@@ -67,12 +77,12 @@ function UsageTrack() {
                 <div className='h-2 bg-[#9981f9] w-full rounded-full mt-3'>
                     <div
                         className='h-2 transition-width duration-800 bg-white rounded-full'
-                        style={{ width: `${Math.min((totalUsage / 10000) * 100, 100)}%` }} // Safeguard against overflow
+                        style={{ width: (totalUsage / maxWords) * 100 + '%' }}
                     ></div>
                 </div>
-                <h2 className='text-xs mt-3'>{totalUsage}/10,000 Credit Used</h2>
+                <h2 className='text-xs mt-3'>{totalUsage}/{maxWords} Credit Used</h2>
             </div>
-            <Button variant={'secondary'} className='w-full mt-4 text-sm font-semibold border border-primary text-primary'>Upgrade</Button>
+            <Button className='w-full mt-4 text-sm hover:bg-white bg-white font-semibold border border-primary text-primary'>Upgrade</Button>
         </div>
     );
 }
