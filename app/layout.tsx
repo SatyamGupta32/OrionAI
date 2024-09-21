@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  title: "OrionAI",
+  title: "Orion AI",
   description: "AI with stellar intelligence.",
 };
 
