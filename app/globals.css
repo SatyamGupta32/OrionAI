@@ -3,6 +3,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -31,6 +32,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -58,43 +60,57 @@
     --chart-5: 340 75% 55%
   }
 }
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     @apply bg-background text-foreground;
   }
 }
 
-body{
+body {
   font-family: "Jost", sans-serif;
   font-style: normal;
 }
 
-body::-webkit-scrollbar{
+body::-webkit-scrollbar {
   display: none;
 }
 
-.scroll::-webkit-scrollbar{
+.scroll::-webkit-scrollbar {
   display: none;
 }
 
 .logo {
   width: 50px;
-  height: 50px; 
+  height: 50px;
 }
 
-@media screen and (min-width:1024px){
+@media screen and (min-width:1024px) {
   .logo {
     width: auto;
-    height: auto; 
+    height: auto;
   }
 }
 
 .table-cell-max-height {
-  max-height: 5rem; /* Adjust as needed */
+  max-height: 5rem;
+  /* Adjust as needed */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+@media screen and (max-width:350px) {
+  .sidebar {
+    min-height: 120%;
+  }
+
+  .header {
+    padding-left: 0;
+    padding-right: 0;
+  }
 }

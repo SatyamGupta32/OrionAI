@@ -1,20 +1,20 @@
 export default [
     {
-        name: 'Blog Title Generator',
-        desc: 'AI that generates blog titles based on your blog information.',
+        name: 'NewsPaper Title Generator',
+        desc: 'AI that generates Newspaper titles based on your blog information.',
         icon: '/blog-title.png',
         category: 'blog',
-        aiPrompt: 'Provide 5 blog title ideas in a bullet list based on the given niche & outline topic. Results should be in rich text editor format.',
-        slug: 'blog-title-generator',
+        aiPrompt: 'Provide 5 news title ideas in a bullet list based on the given niche & outline topic. Results should be in rich text editor format.',
+        slug: 'news-title-generator',
         form: [
             {
-                label: 'Enter your blog niche',
+                label: 'Enter your news niche',
                 field: 'input',
                 name: 'niche',
                 required: true,
             },
             {
-                label: 'Enter blog outline',
+                label: 'Enter news outline',
                 field: 'textarea',
                 name: 'outline',
             }
@@ -147,7 +147,7 @@ export default [
         ]
     },
     {
-        name: 'Website Headline Generator',
+        name: 'web. Headline Generator',
         desc: 'AI that generates website headlines based on your website content.',
         icon: '/website-headline.png',
         category: 'web',
@@ -168,7 +168,7 @@ export default [
         ]
     },
     {
-        name: 'Social Media Caption',
+        name: 'Social Caption generator',
         desc: 'AI that generates captions for social media posts based on your input.',
         icon: '/social-media-caption.png',
         category: 'post',

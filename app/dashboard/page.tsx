@@ -10,7 +10,7 @@ const Dashboard = () => {
   return (
     <div className='ml-0 md:ml-48 lg:ml-64'>
       <SearchSection onSearchInput={(value:string)=>setUserSearchInput(value)}/>
-      <TemplateSection userSearchInput={userSearchInput}/>
+      <TemplateSection userSearchInput={userSearchInput || ''}/>
     </div>
   )
 }
