@@ -65,3 +65,6 @@ Create a `.env.local` file in the root directory:
 
 ```bash
 touch .env.local
+```
+### link to the website
+https://orion-ai-sepia.vercel.app/sign-in?redirect_url=https%3A%2F%2Forion-ai-sepia.vercel.app%2F
