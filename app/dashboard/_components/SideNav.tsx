@@ -6,8 +6,8 @@ import Link from 'next/link';
 import UsageTrack from './UsageTrack';
 
 interface SideNavProps {
-  isOpen: boolean; // Define type for isOpen
-  toggleSidebar: () => void; // Define type for toggleSidebar
+  isOpen: boolean;
+  toggleSidebar: () => void;
 }
 
 const SideNav: React.FC<SideNavProps> = ({ isOpen, toggleSidebar }) => {
@@ -24,10 +24,18 @@ const SideNav: React.FC<SideNavProps> = ({ isOpen, toggleSidebar }) => {
     { name: 'Setting', icon: Settings2, path: '/dashboard/settings' },
   ];
 
+  // Function to close sidebar on mobile view
+  const handleMenuClick = () => {
+    if (window.innerWidth <= 640) {
+      toggleSidebar();
+    }
+  };
+
   return (
     <>
       <div className={`fixed top-0 left-0 w-full lg:w-64 h-screen bg-white z-20 shadow-sm border-r-2 transition-transform duration-500 ${isOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0 md:w-48 lg:w-64`}>
         <div className="sidebar relative h-full">
+          {/* Close button for mobile */}
           <div className="block sm:hidden absolute top-5 right-5 z-30">
             <Image
               src="/close.svg"
@@ -39,6 +47,7 @@ const SideNav: React.FC<SideNavProps> = ({ isOpen, toggleSidebar }) => {
             />
           </div>
 
+          {/* Logo Section */}
           <div className="flex items-center mt-3 justify-center py-4 cursor-pointer">
             <div className="relative">
               <Image
@@ -57,11 +66,12 @@ const SideNav: React.FC<SideNavProps> = ({ isOpen, toggleSidebar }) => {
 
           <hr className="w-[90%] mx-auto" />
 
+          {/* Navigation Menu */}
           <div className="pl-3 mt-2 pr-1 animate-fadeIn">
             <ul className="space-y-4">
               {menuList.map((menu, index) => (
-                <Link key={index} href={menu.path}>
-                  <li className={`hover:bg-[#E5E5E5] flex items-center gap-3 p-2 rounded transition-all duration-500 cursor-pointer hover:ml-3 text-lg font-light hover:font-normal hover:text-gray-400 ${path == menu.path && 'text-primary font-semilight'}`}>
+                <Link key={index} href={menu.path} onClick={handleMenuClick}>
+                  <li className={`hover:bg-[#E5E5E5] flex items-center gap-3 p-2 rounded transition-all duration-500 cursor-pointer hover:ml-3 text-lg font-light hover:font-normal hover:text-gray-400 ${path === menu.path && 'text-primary font-semilight'}`}>
                     <span><menu.icon size={18} /></span>
                     <span>{menu.name}</span>
                   </li>
@@ -70,6 +80,7 @@ const SideNav: React.FC<SideNavProps> = ({ isOpen, toggleSidebar }) => {
             </ul>
           </div>
 
+          {/* UsageTrack Component */}
           <div className="w-full absolute bottom-28 left-0">
             <UsageTrack />
           </div>
